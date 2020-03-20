@@ -10,7 +10,7 @@ endif
 " OPTIONS: {{{
 
 " Highlight 'print' as function
-let g:python_syntax_print_as_function = 0
+let g:python_syntax_print_as_function = 1
 "
 " Highlight 'async/await' keywords
 let g:python_syntax_highlight_async_await = 1
