@@ -1,9 +1,5 @@
 " vim: ft=vim:fdm=marker
-
-" For version 5.x: Clear all syntax items
-if version < 600
-    syntax clear
-elseif exists("b:current_syntax")
+if exists("b:current_syntax")
     finish
 endif
 
@@ -56,6 +52,11 @@ let g:python_syntax_highlight_exceptions = 1
 let g:python_syntax_slow_sync = 1
 
 " }}}
+
+" For version 5.x: Clear all syntax items
+if version < 600
+    syntax clear
+endif
 
 " Keywords {{{
 " ============
@@ -389,6 +390,6 @@ endif
 
     hi def link  pythonExClass      Structure
 
-    let b:current_syntax = "python"
-
 " }}}
+
+let b:current_syntax = "python"
