@@ -81,7 +81,7 @@ endif
     syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
     syn match pythonClassParameters "[^,\*]*" contained contains=pythonBuiltin,pythonBuiltinObj,pythonBuiltinType,pythonExtraOperatorpythonStatement,pythonBrackets,pythonString,pythonComment skipwhite
 
-    syn match pythonMethod "\%(self\.\)\@<=\h\w*"
+    syn match pythonMethod "\%(self\.\)\@<=\h\w*(\@="
 
     syn keyword pythonRepeat        for while
     syn keyword pythonConditional   if elif else
