@@ -81,6 +81,8 @@ endif
     syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
     syn match pythonClassParameters "[^,\*]*" contained contains=pythonBuiltin,pythonBuiltinObj,pythonBuiltinType,pythonExtraOperatorpythonStatement,pythonBrackets,pythonString,pythonComment skipwhite
 
+    syn match pythonMethod "self.\zs\h\w*\ze("
+
     syn keyword pythonRepeat        for while
     syn keyword pythonConditional   if elif else
     syn keyword pythonInclude       import from
@@ -335,6 +337,8 @@ endif
     hi def link  pythonBrackets     Normal
     hi def link  pythonClassParameters Normal
     hi def link  pythonSelf         Identifier
+
+    hi def link  pythonMethod       Function
 
     hi def link  pythonConditional  Conditional
     hi def link  pythonRepeat       Repeat
