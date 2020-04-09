@@ -258,6 +258,7 @@ endif
         syn keyword pythonBuiltinObj True False Ellipsis None NotImplemented
         syn keyword pythonBuiltinObj __debug__ __doc__ __file__ __name__ __package__
         syn keyword pythonBuiltinObj List Tuple Set Dict Iterable Union Optional Any Callable
+        syn keyword pythonBuiltinObj AnyStr Protocol Generic TypeVar
     endif
 
     if g:python_syntax_builtin_types
@@ -277,7 +278,7 @@ endif
         syn keyword pythonBuiltinFunc   next oct open ord pow property range xrange
         syn keyword pythonBuiltinFunc   raw_input reduce reload repr reversed round setattr
         syn keyword pythonBuiltinFunc   slice sorted staticmethod sum vars zip
-        syn keyword pythonBuiltinFunc   overload
+        syn keyword pythonBuiltinFunc   overload cast
 
         if g:python_syntax_print_as_function
             syn keyword pythonBuiltinFunc   print
