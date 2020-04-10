@@ -6,50 +6,50 @@ endif
 " OPTIONS: {{{
 
 " Highlight 'print' as function
-let g:python_syntax_print_as_function = 1
+" let g:python_syntax_print_as_function = 1
 "
 " Highlight 'async/await' keywords
-let g:python_syntax_highlight_async_await = 1
+" let g:python_syntax_highlight_async_await = 1
 
 " Highlight '=' operator
-let g:python_syntax_highlight_equal_operator = 1
+" let g:python_syntax_highlight_equal_operator = 1
 
 " Highlight '*' operator
-let g:python_syntax_highlight_stars_operator = 1
+" let g:python_syntax_highlight_stars_operator = 1
 
 " Highlight 'self' keyword
-let g:python_syntax_highlight_self = 1
+" let g:python_syntax_highlight_self = 1
 
 " Highlight indent's errors
-let g:python_syntax_indent_errors = 1
+" let g:python_syntax_indent_errors = 1
 
 " Highlight space's errors
-let g:python_syntax_space_errors = 1
+" let g:python_syntax_space_errors = 1
 
 " Highlight string formatting
-let g:python_syntax_string_formatting = 1
-let g:python_syntax_string_format = 1
-let g:python_syntax_string_templates = 1
-let g:python_syntax_doctests = 1
+" let g:python_syntax_string_formatting = 1
+" let g:python_syntax_string_format = 1
+" let g:python_syntax_string_templates = 1
+" let g:python_syntax_doctests = 1
 
 " Support docstrings in syntax highlighting
-let g:python_syntax_docstrings = 1
+" let g:python_syntax_docstrings = 1
 
 " Highlight builtin objects (True, False, ...)
-let g:python_syntax_builtin_objs = 1
+" let g:python_syntax_builtin_objs = 1
 
 " Highlight builtin types (str, list, ...)
-let g:python_syntax_builtin_types = 1
+" let g:python_syntax_builtin_types = 1
 
 " Highlight builtin types (div, eval, ...)
-let g:python_syntax_builtin_funcs = 1
+" let g:python_syntax_builtin_funcs = 1
 
 " Highlight exceptions (TypeError, ValueError, ...)
-let g:python_syntax_highlight_exceptions = 1
+" let g:python_syntax_highlight_exceptions = 1
 
 " More slow synchronizing. Disable on the slow machine, but code in docstrings
 " could be broken.
-let g:python_syntax_slow_sync = 1
+" let g:python_syntax_slow_sync = 1
 
 " }}}
 
@@ -92,26 +92,26 @@ endif
     syn match pythonExtraOperator "\%([~!^&|/%+-]\|\%(class\s*\)\@<!<<\|<=>\|<=\|\%(<\|\<class\s\+\u\w*\s*\)\@<!<[^<]\@=\|===\|==\|=\~\|>>\|>=\|=\@<!>\|\.\.\.\|\.\.\|::\)"
     syn match pythonExtraPseudoOperator "\%(-=\|/=\|\*\*=\|\*=\|&&=\|&=\|&&\|||=\||=\|||\|%=\|+=\|!\~\|!=\)"
 
-    if !g:python_syntax_print_as_function
+    if !get(g:, 'python_syntax_print_as_function', 1)
         syn keyword pythonStatement print
     endif
 
-    if g:python_syntax_highlight_async_await
+    if get(g:, 'python_syntax_highlight_async_await', 1)
         syn keyword pythonStatement async await
         syn match pythonStatement "\<async\s\+def\>" nextgroup=pythonFunction skipwhite
         syn match pythonStatement "\<async\s\+with\>" display
         syn match pythonStatement "\<async\s\+for\>" nextgroup=pythonRepeat skipwhite
     endif
 
-    if g:python_syntax_highlight_equal_operator
+    if get(g:, 'python_syntax_highlight_equal_operator', 1)
         syn match pythonExtraOperator "\%(=\)"
     endif
 
-    if g:python_syntax_highlight_stars_operator
+    if get(g:, 'python_syntax_highlight_stars_operator', 1)
         syn match pythonExtraOperator "\%(\*\|\*\*\)"
     endif
 
-    if g:python_syntax_highlight_self
+    if get(g:, 'python_syntax_highlight_self', 1)
         syn keyword pythonSelf self cls
     endif
 
@@ -144,12 +144,12 @@ endif
     syn match pythonError       "[=]\{3,}" display
 
     " Indent errors (mix space and tabs)
-    if g:python_syntax_indent_errors
+    if get(g:, 'python_syntax_indent_errors', 1)
         syn match pythonIndentError "^\s*\( \t\|\t \)\s*\S"me=e-1 display
     endif
 
     " Trailing space errors
-    if g:python_syntax_space_errors
+    if get(g:, 'python_syntax_space_errors', 1)
         syn match pythonSpaceError  "\s\+$" display
     endif
 
@@ -201,32 +201,32 @@ endif
     syn match  pythonUniRawEscapeError  "\([^\\]\(\\\\\)*\)\@<=\\u\x\{,3}\X" display contained
 
     " String formatting
-    if g:python_syntax_string_formatting
+    if get(g:, 'python_syntax_string_formatting', 1)
         syn match pythonStrFormatting   "%\(([^)]\+)\)\=[-#0 +]*\d*\(\.\d\+\)\=[hlL]\=[diouxXeEfFgGcrs%]" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
         syn match pythonStrFormatting   "%[-#0 +]*\(\*\|\d\+\)\=\(\.\(\*\|\d\+\)\)\=[hlL]\=[diouxXeEfFgGcrs%]" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
     endif
 
     " Str.format syntax
-    if g:python_syntax_string_format
+    if get(g:, 'python_syntax_string_format', 1)
         syn match pythonStrFormat "{{\|}}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
         syn match pythonStrFormat "{\([a-zA-Z0-9_]*\|\d\+\)\(\.[a-zA-Z_][a-zA-Z0-9_]*\|\[\(\d\+\|[^!:\}]\+\)\]\)*\(![rs]\)\=\(:\({\([a-zA-Z_][a-zA-Z0-9_]*\|\d\+\)}\|\([^}]\=[<>=^]\)\=[ +-]\=#\=0\=\d*\(\.\d\+\)\=[bcdeEfFgGnoxX%]\=\)\=\)\=}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
     endif
 
     " String templates
-    if g:python_syntax_string_templates
+    if get(g:, 'python_syntax_string_templates', 1)
         syn match pythonStrTemplate "\$\$" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
         syn match pythonStrTemplate "\${[a-zA-Z_][a-zA-Z0-9_]*}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
         syn match pythonStrTemplate "\$[a-zA-Z_][a-zA-Z0-9_]*" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
     endif
 
     " DocTests
-    if g:python_syntax_doctests
+    if get(g:, 'python_syntax_doctests', 1)
         syn region pythonDocTest    start="^\s*>>>" end=+'''+he=s-1 end="^\s*$" contained
         syn region pythonDocTest2   start="^\s*>>>" end=+"""+he=s-1 end="^\s*$" contained
     endif
 
     " DocStrings
-    if g:python_syntax_docstrings
+    if get(g:, 'python_syntax_docstrings', 1)
         syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?"""+ end=+"""+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError,pythonTodo
         syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?'''+ end=+'''+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError,pythonTodo
     endif
@@ -254,14 +254,14 @@ endif
 " ============
 
     " Builtin objects and types
-    if g:python_syntax_builtin_objs
+    if get(g:, 'python_syntax_builtin_objs', 1)
         syn keyword pythonBuiltinObj True False Ellipsis None NotImplemented
         syn keyword pythonBuiltinObj __debug__ __doc__ __file__ __name__ __package__
         syn keyword pythonBuiltinObj List Tuple Set Dict Iterable Union Optional Any Callable
         syn keyword pythonBuiltinObj AnyStr Protocol Generic TypeVar
     endif
 
-    if g:python_syntax_builtin_types
+    if get(g:, 'python_syntax_builtin_types', 1)
         syn keyword pythonBuiltinType type object
         syn keyword pythonBuiltinType str basestring unicode buffer bytearray bytes chr unichr
         syn keyword pythonBuiltinType dict int long bool float complex set frozenset list tuple
@@ -269,7 +269,7 @@ endif
     endif
 
     " Builtin functions
-    if g:python_syntax_builtin_funcs
+    if get(g:, 'python_syntax_builtin_funcs', 1)
         syn keyword pythonBuiltinFunc   __import__ abs all any apply
         syn keyword pythonBuiltinFunc   bin callable classmethod cmp coerce compile
         syn keyword pythonBuiltinFunc   delattr dir divmod enumerate eval execfile filter
@@ -280,14 +280,14 @@ endif
         syn keyword pythonBuiltinFunc   slice sorted staticmethod sum vars zip
         syn keyword pythonBuiltinFunc   overload cast
 
-        if g:python_syntax_print_as_function
+        if get(g:, 'python_syntax_print_as_function', 1)
             syn keyword pythonBuiltinFunc   print
         endif
 
     endif
 
     " Builtin exceptions and warnings
-    if g:python_syntax_highlight_exceptions
+    if get(g:, 'python_syntax_highlight_exceptions', 1)
         syn keyword pythonExClass   BaseException
         syn keyword pythonExClass   Exception StandardError ArithmeticError
         syn keyword pythonExClass   LookupError EnvironmentError
@@ -317,7 +317,7 @@ endif
 
 " }}}
 
-if g:python_syntax_slow_sync
+if get(g:, 'python_syntax_slow_sync', 1)
     syn sync minlines=2000
 else
     " This is fast but code inside triple quoted strings screws it up. It
