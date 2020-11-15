@@ -258,6 +258,7 @@ endif
         syn keyword pythonBuiltinObj True False Ellipsis None NotImplemented
         syn keyword pythonBuiltinObj __debug__ __doc__ __file__ __name__ __package__
         syn keyword pythonBuiltinObj List Tuple Set Dict Iterable Union Optional Any Callable
+        syn keyword pythonBuiltinObj NamedTuple DefaultDict
         syn keyword pythonBuiltinObj AnyStr Protocol Generic TypeVar Mapping MutableMapping Sequence
     endif
 
